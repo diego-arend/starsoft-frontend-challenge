@@ -1,14 +1,14 @@
-import Button from "@/components/Button";
+import Container from '@/components/Container';
 
-export default function Home() {
+const HomePage = () => {
   return (
-    <div>
-      <main>
-        <Button variant="primary" width="200px" height="50px">
-          Primary Button
-        </Button>
-      </main>
-      <footer></footer>
-    </div>
+    <Container>
+      {/* Conteúdo vai aqui */}
+      <h1>Starsoft Challenge</h1>
+      
+      {/* Resto do conteúdo */}
+    </Container>
   );
-}
+};
+
+export default HomePage;

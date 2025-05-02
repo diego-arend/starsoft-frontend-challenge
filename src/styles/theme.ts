@@ -45,6 +45,7 @@ declare module "styled-components" {
       mobile: string;
       tablet: string;
       desktop: string;
+      wide: string;
     };
   }
 }
@@ -93,6 +94,7 @@ const theme: DefaultTheme = {
     mobile: "30rem", // 480px
     tablet: "48rem", // 768px
     desktop: "64rem", // 1024px
+    wide: "80rem", // 1280px
   },
 };
 

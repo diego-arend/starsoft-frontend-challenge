@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --max-width: 1200px;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  color: #FFFFFF;
+  background-color: #232323;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-poppins), sans-serif;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+/* Redefine tamanho de fonte para diferentes tamanhos de tela */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Classe auxiliar para imagens responsivas */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Grades responsivas básicas */
+.grid {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+.grid-2 {
+  grid-template-columns: 1fr;
+}
+
+.grid-3 {
+  grid-template-columns: 1fr;
+}
+
+.grid-4 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

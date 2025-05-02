@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins, Geist, Geist_Mono } from "next/font/google";
 import StyledComponentsRegistry from "../styles/registry";
 import ThemeProvider from "../styles/ThemeProvider";
 import Header from "@/components/Header";
+import "./globals.css";
 
-// Configuração da fonte Poppins
+// Metadata
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
@@ -27,18 +28,27 @@ export const metadata: Metadata = {
   description: "A frontend challenge for Starsoft",
 };
 
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable}`}>
         <StyledComponentsRegistry>
           <ThemeProvider>
             <Header cartItemsCount={0} />
-            {children}
+            <main>
+              {children}
+            </main>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
