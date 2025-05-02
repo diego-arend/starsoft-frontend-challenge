@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ButtonHTMLAttributes } from 'react';
-import { StyledButton } from '@/styles/components/ButtonStyles';
+import { StyledButton } from './styles';
 
 export type ButtonVariant = 'primary' | 'secondary';
 
