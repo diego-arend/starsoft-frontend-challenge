@@ -3,6 +3,7 @@ import { Poppins, Geist, Geist_Mono } from "next/font/google";
 import StyledComponentsRegistry from "../styles/registry";
 import ThemeProvider from "../styles/ThemeProvider";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 // Metadata
@@ -28,7 +29,6 @@ export const metadata: Metadata = {
   description: "A frontend challenge for Starsoft",
 };
 
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -45,10 +45,13 @@ export default function RootLayout({
       <body className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable}`}>
         <StyledComponentsRegistry>
           <ThemeProvider>
-            <Header cartItemsCount={0} />
-            <main>
-              {children}
-            </main>
+            <div className="layout-wrapper">
+              <Header cartItemsCount={0} />
+              <main>
+                {children}
+              </main>
+              <Footer />
+            </div>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
