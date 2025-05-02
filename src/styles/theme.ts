@@ -34,12 +34,17 @@ declare module "styled-components" {
       lg: string;
     };
     paddings: {
-      xs: string
+      xs: string;
       sm: string;
       md: string;
       lg: string;
-      xl: string; 
+      xl: string;
       xxl: string;
+    };
+    gaps: {
+      sm: string;
+      md: string;
+      lg: string;
     };
     breakpoints: {
       mobile: string;
@@ -89,6 +94,11 @@ const theme: DefaultTheme = {
     lg: "1.5rem", // 24px
     xl: "2rem", // 32px
     xxl: "3rem", // 48px
+  },
+  gaps: {
+    sm: "0.5rem", // 8px
+    md: "1rem", // 16px
+    lg: "1.5rem", // 24px
   },
   breakpoints: {
     mobile: "30rem", // 480px

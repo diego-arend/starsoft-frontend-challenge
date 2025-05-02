@@ -1,12 +1,21 @@
 "use client";
 
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { StyledRow, StyledCol } from "./styles";
+
+export type GapSize = "sm" | "md" | "lg";
+
+// Define and export the gaps object
+export const gaps = {
+  sm: "0.5rem",  
+  md: "1rem",   
+  lg: "1.5rem",  
+};
 
 interface RowProps {
   children: React.ReactNode;
   className?: string;
-  gap?: keyof typeof gaps;
+  gap?: GapSize;
 }
 
 interface ColProps {
@@ -18,51 +27,39 @@ interface ColProps {
   lg?: number;
 }
 
-// Possíveis valores para gap
-const gaps = {
-  small: '0.5rem',
-  medium: '1rem',
-  large: '1.5rem',
+/**
+ * Row Component
+ *
+ * Flexbox container that holds columns in a responsive grid system
+ */
+export const Row: React.FC<RowProps> = ({
+  children,
+  className,
+  gap = "md",
+}) => {
+  return (
+    <StyledRow className={className} gap={gap}>
+      {children}
+    </StyledRow>
+  );
 };
 
-const Row = styled.div<RowProps & { gap?: keyof typeof gaps }>`
-  display: flex;
-  flex-wrap: wrap;
-  width: calc(100% + ${props => props.gap ? gaps[props.gap] : gaps.medium});
-  margin-left: -${props => props.gap ? gaps[props.gap] : gaps.medium};
-  margin-right: -${props => props.gap ? gaps[props.gap] : gaps.medium};
-  
-  & > * {
-    padding-left: ${props => props.gap ? gaps[props.gap] : gaps.medium};
-    padding-right: ${props => props.gap ? gaps[props.gap] : gaps.medium};
-    margin-bottom: ${props => props.gap ? gaps[props.gap] : gaps.medium};
-  }
-`;
-
-const getColWidth = (span?: number) => {
-  if (!span) return;
-  const width = (span / 12) * 100;
-  return `flex: 0 0 ${width}%; max-width: ${width}%;`;
+/**
+ * Col Component
+ *
+ * Column component for the grid system with responsive breakpoints
+ */
+export const Col: React.FC<ColProps> = ({
+  children,
+  className,
+  xs,
+  sm,
+  md,
+  lg,
+}) => {
+  return (
+    <StyledCol className={className} xs={xs} sm={sm} md={md} lg={lg}>
+      {children}
+    </StyledCol>
+  );
 };
-
-const Col = styled.div<ColProps>`
-  flex: 1 0 0%;
-  
-  ${({ xs }) => xs && `
-    ${getColWidth(xs)}
-  `}
-  
-  @media (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    ${({ sm }) => sm && getColWidth(sm)}
-  }
-  
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    ${({ md }) => md && getColWidth(md)}
-  }
-  
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    ${({ lg }) => lg && getColWidth(lg)}
-  }
-`;
-
-export { Row, Col };
