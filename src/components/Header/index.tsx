@@ -1,15 +1,9 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  HeaderContainer,
-  LogoContainer,
-  CartContainer,
-  CartIcon,
-  CartCount,
-} from "./styles";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { HeaderContainer, LogoContainer, CartContainer, CartIcon, CartCount } from './styles';
 
 interface HeaderProps {
   cartItemsCount?: number;
@@ -17,8 +11,8 @@ interface HeaderProps {
 
 /**
  * Header Component
- *
- * Main navigation header that displays the logo and shopping cart
+ * 
+ * Responsive header with logo and shopping cart
  */
 const Header: React.FC<HeaderProps> = ({ cartItemsCount = 0 }) => {
   return (
