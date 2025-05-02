@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Challenge Starsoft
 
-## Getting Started
+Este é um projeto [Next.js](https://nextjs.org) inicializado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-First, run the development server:
+## Como Iniciar
 
+- Primeiro, instale as dependências do projeto:
+```bash
+npm install
+```
+  - Depois, execute o servidor de desenvolvimento:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+- Abra http://localhost:3000 em seu navegador para ver o resultado.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Dependências
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Este projeto utiliza as seguintes dependências principais:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 15**: Framework React para aplicações de produção
+- **React 18**: Biblioteca JavaScript para construção de interfaces de usuário
+- **Styled Components**: Biblioteca CSS-in-JS para estilização de componentes
+- **TypeScript**: Verificação estática de tipos para JavaScript
 
-## Learn More
+### Dependências de Desenvolvimento
 
-To learn more about Next.js, take a look at the following resources:
+- **ESLint**: Para qualidade e consistência de código
+- **Pacotes @types**: Definições de tipos TypeScript para várias bibliotecas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Decisões Principais
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Configuração do Styled Components
 
-## Deploy on Vercel
+O projeto implementa o styled-components com Next.js usando uma configuração personalizada para suporte à renderização do lado do servidor (SSR):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Implementação do Registry**: Utilizamos o componente `StyledComponentsRegistry` que aproveita o `useState` do React e o `useServerInsertedHTML` do Next.js para injetar corretamente os estilos durante o SSR.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Provider de Tema**: Um provedor de tema global envolve a aplicação para garantir um estilo consistente em todos os componentes. O tema inclui:
+   - Paleta de cores (primária, escura, escalas de cinza)
+   - Configurações de tipografia
+   - Sistema de espaçamento
+   - Estilos de borda
+
+3. **Estrutura de Componentes**:
+   - Os componentes usam a convenção de nomenclatura `$prop` para props do styled-components para evitar que sejam passados para elementos DOM
+   - Os estilos são separados em seus próprios arquivos no diretório `src/styles/components`
+   - Componentes UI comuns são construídos para serem reutilizáveis em toda a aplicação
+
+4. **Configuração do Compilador Next.js**:
+  - Esta configuração proporciona desempenho ideal e experiência de desenvolvedor ao usar styled-components com Next.js, incluindo renderização adequada do lado do servidor, isolamento de componentes e consistência de tema.
+   ```js
+   // next.config.js
+   compiler: {
+     styledComponents: true,
+   }
+````
+
