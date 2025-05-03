@@ -1,108 +1,106 @@
-import styled from 'styled-components';
+"use client";
+
+import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px; // Mais compacto em telas menores
   width: 100%;
-  padding: ${({ theme }) => `${theme.paddings.xs} ${theme.paddings.md}`};
-  background-color: ${({ theme }) => theme.colors.dark};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
-  position: sticky; // Manter o header visível ao rolar
-  top: 0;
-  z-index: 1000;
+  margin: 0 auto;
+  background: ${({ theme }) => theme.colors.dark};
+  border-bottom: 1px solid rgba(255, 255, 255, 0.21);
+  height: 70px;
+  padding: 0 16px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  position: relative;
 
-  /* Tablets */
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    height: 75px;
-    padding: ${({ theme }) => `${theme.paddings.xs} ${theme.paddings.xl}`};
+    height: 80px;
+    padding: 0 24px;
   }
 
-  /* Desktop */
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    height: 80px;
-    padding: ${({ theme }) => `${theme.paddings.xs} ${theme.paddings.xxl}`};
+    height: 100px;
+    max-width: 1728px;
+    padding: 0 32px;
   }
 `;
 
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  cursor: pointer;
-
+  position: relative;
+  width: 80px;
+  height: 30px;
+    
   img {
     width: 80px;
-    height: auto;
-    transition: width 0.3s ease; // Transição suave
-
-    /* Tablets */
+    height: 30px;
+    
     @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
       width: 90px;
+      height: 34px;
     }
 
-    /* Desktop */
     @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
       width: 101px;
+      height: 38px;
     }
   }
 `;
 
 export const CartContainer = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
+  padding: 6px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 8px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 10px;
+  }
 `;
 
 export const CartIcon = styled.div`
-  position: relative;
   cursor: pointer;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.xs};
-
+  gap: 5px;
+  width: 40px;
+  height: 25px;
+  
   img {
     width: 25px;
-    height: auto;
-    transition: width 0.3s ease; // Transição suave
+    height: 25px;
 
-    /* Tablets */
     @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
       width: 28px;
+      height: 28px;
     }
 
-    /* Desktop */
     @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
       width: 33px;
+      height: 33px;
     }
   }
-`;
 
-export const CartCount = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.colors.dark};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fonts.sizes.md};
-  font-weight: bold;
-  width: 10px;
-  height: 22px;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin-left: ${({ theme }) => theme.margins.sm};
-  transition: all 0.3s ease; // Transição suave
-
-  /* Tablets */
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 11px;
-    height: 24px;
-    font-size: ${({ theme }) => theme.fonts.sizes.md};
+    gap: 7px;
+    width: 45px;
+    height: 28px;
   }
 
-  /* Desktop */
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    width: 12px;
-    height: 26px;
-    font-size: ${({ theme }) => theme.fonts.sizes.lg};
+    gap: 9px;
+    width: 54px;
+    height: 33px;
   }
 `;

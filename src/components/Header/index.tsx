@@ -3,45 +3,47 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HeaderContainer, LogoContainer, CartContainer, CartIcon, CartCount } from './styles';
+import CartCount from '@/components/CartCount';
+import { HeaderContainer, LogoContainer, CartContainer, CartIcon } from './styles';
 
 interface HeaderProps {
-  cartItemsCount?: number;
+  className?: string;
+  cartCount?: number;
 }
 
 /**
  * Header Component
  * 
  * Responsive header with logo and shopping cart
+ * 
+ * @prop {string} className - Optional CSS class name
+ * @prop {number} cartCount - Optional number to display in the cart counter (defaults to 0)
  */
-const Header: React.FC<HeaderProps> = ({ cartItemsCount = 0 }) => {
+const Header: React.FC<HeaderProps> = ({ className, cartCount = 0 }) => {
   return (
-    <HeaderContainer>
-      <LogoContainer>
-        <Link href="/">
+    <HeaderContainer className={className}>
+      <Link href="/" style={{ textDecoration: 'none', display: 'block' }}>
+        <LogoContainer>
           <Image
-            src="/logo1.svg"
+            src="/logo.svg"
             alt="Starsoft Logo"
             width={101}
             height={38}
             priority
           />
-        </Link>
-      </LogoContainer>
-
+        </LogoContainer>
+      </Link>
+      
       <CartContainer>
-        <Link href="/cart">
-          <CartIcon>
-            <Image
-              src="/bag.svg"
-              alt="Shopping Cart"
-              width={33}
-              height={33}
-              priority
-            />
-            <CartCount>{cartItemsCount}</CartCount>
-          </CartIcon>
-        </Link>
+        <CartIcon>
+          <Image
+            src="/bag.svg"
+            alt="Shopping Cart"
+            width={33}
+            height={33}
+          />
+          <CartCount count={cartCount} />
+        </CartIcon>
       </CartContainer>
     </HeaderContainer>
   );

@@ -11,11 +11,31 @@ declare module "styled-components" {
       white: string;
     };
     fonts: {
-      family: string;
+      family: {
+        primary: string;
+        secondary: string;
+      };
       sizes: {
         sm: string;
         md: string;
         lg: string;
+        xl: string; 
+      };
+      weights: {
+        regular: number;
+        medium: number;
+        semibold: number;
+        bold: number;
+      };
+      lineHeights: {
+        tight: string;
+        normal: string;
+        relaxed: string;
+      };
+      letterSpacing: {
+        tight: string;
+        normal: string;
+        wide: string;
       };
     };
     borders: {
@@ -57,23 +77,43 @@ declare module "styled-components" {
 
 const theme: DefaultTheme = {
   colors: {
-    primary: "#FF8310", // #FF8310
-    dark: "#232323", // #232323
-    darkest: "#191A20", // #191A20
-    gray: "#393939", // #393939
-    lightGray: "#CCCCCC", // #CCCCCC
-    white: "#FFFFFF", // #FFFFFF
+    primary: "#FF8310",
+    dark: "#232323",
+    darkest: "#191A20",
+    gray: "#393939",
+    lightGray: "#CCCCCC",
+    white: "#FFFFFF",
   },
   fonts: {
-    family: "var(--font-poppins), sans-serif",
+    family: {
+      primary: "var(--font-poppins), sans-serif",
+      secondary: "var(--font-ibm-plex-sans), sans-serif",
+    },
     sizes: {
       sm: "0.875rem", // 14px
       md: "1rem", // 16px
       lg: "1.25rem", // 20px
+      xl: "1.5rem", // 24px
+    },
+    weights: {
+      regular: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+    },
+    lineHeights: {
+      tight: "100%",
+      normal: "140%",
+      relaxed: "160%",
+    },
+    letterSpacing: {
+      tight: "-0.29px",
+      normal: "0",
+      wide: "0.5px",
     },
   },
   borders: {
-    radius: "0.5rem", // 8px
+    radius: "0.5rem",
   },
   spacing: {
     xs: "0.25rem", // 4px

@@ -75,6 +75,13 @@ main {
   }
 }
 
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');
+}
 
 .responsive-img {
   max-width: 100%;

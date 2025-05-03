@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Geist, Geist_Mono, IBM_Plex_Sans } from "next/font/google";
 import StyledComponentsRegistry from "../styles/registry";
 import ThemeProvider from "../styles/ThemeProvider";
 import Header from "@/components/Header";
@@ -11,6 +11,13 @@ const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--font-poppins',
+  display: 'swap',
+});
+
+const ibmPlexSans = IBM_Plex_Sans({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-ibm-plex-sans',
   display: 'swap',
 });
 
@@ -37,19 +44,17 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="pt-BR">
-      <body className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} ${ibmPlexSans.variable}`}>
+      <body>
         <StyledComponentsRegistry>
           <ThemeProvider>
             <div className="layout-wrapper">
-              <Header cartItemsCount={0} />
-              <main>
-                {children}
-              </main>
+              <Header />
+              <main>{children}</main>
               <Footer />
             </div>
           </ThemeProvider>
