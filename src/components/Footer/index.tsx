@@ -18,7 +18,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
     <FooterContainer className={className}>
       <FooterContent>
         <FooterText>
-          STARSOFT © TODOS OS DIRETIOS RESERVADOS
+          STARSOFT © TODOS OS DIREITOS RESERVADOS
         </FooterText>
       </FooterContent>
     </FooterContainer>
