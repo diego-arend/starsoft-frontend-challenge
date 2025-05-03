@@ -1,13 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins, IBM_Plex_Sans } from "next/font/google";
-import StyledComponentsRegistry from "../styles/registry";
-import ThemeProvider from "../styles/ThemeProvider";
-import QueryProvider from "@/providers/QueryProvider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import "./globals.css";
+import AppLayout from "./appLayout";
 
-// Metadata
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
@@ -22,6 +17,7 @@ const ibmPlexSans = IBM_Plex_Sans({
   display: 'swap',
 });
 
+// Metadata
 export const metadata: Metadata = {
   title: "Starsoft Frontend Challenge",
   description: "A frontend challenge for Starsoft",
@@ -39,19 +35,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${ibmPlexSans.variable}`}>
+    <html lang="pt-BR" className={`${poppins.variable} ${ibmPlexSans.variable}`}>
       <body>
-        <StyledComponentsRegistry>
-          <QueryProvider>
-            <ThemeProvider>
-              <div className="layout-wrapper">
-                <Header cartCount={3} />
-                <main>{children}</main>
-                <Footer />
-              </div>
-            </ThemeProvider>
-          </QueryProvider>
-        </StyledComponentsRegistry>
+        <AppLayout>{children}</AppLayout>
       </body>
     </html>
   );

@@ -9,9 +9,6 @@ import { CartCountProps } from '@/types/cart-count-types';
  * 
  * Displays a number value with specific typography and styling
  * Used primarily for showing the number of items in a cart
- * 
- * @prop {number} count - The number to display
- * @prop {string} className - Optional CSS class name
  */
 const CartCount: React.FC<CartCountProps> = ({ count = 0, className }) => {
   const formattedCount = React.useMemo(() => {
@@ -24,7 +21,11 @@ const CartCount: React.FC<CartCountProps> = ({ count = 0, className }) => {
   }, [count]);
 
   return (
-    <StyledCartCount className={className} data-count={count}>
+    <StyledCartCount 
+      className={className} 
+      data-count={count}
+      $showBackground={count > 0} 
+    >
       {formattedCount}
     </StyledCartCount>
   );

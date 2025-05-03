@@ -12,18 +12,16 @@ export const ProductsService = {
    * @param page - Page number (default: 1)
    * @param limit - Items per page (default: 20)
    */
-  getProducts: async (page = 1, limit = 20): Promise<PaginatedResponse<Product>> => {
-    const url = new URL(`${API_BASE_URL}/products`);
-    url.searchParams.append('page', page.toString());
-    url.searchParams.append('limit', limit.toString());
-
-    const response = await fetch(url.toString());
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch products: ${response.status} ${response.statusText}`);
+  getProducts: async (page = 1, limit = 8): Promise<PaginatedResponse<Product>> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/products?page=${page}&limit=${limit}`);
+      const data = await response.json();
+      console.log('API response:', data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      throw error;
     }
-    
-    return response.json();
   },
   
   /**

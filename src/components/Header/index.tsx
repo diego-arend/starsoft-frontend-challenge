@@ -1,23 +1,35 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CartCount from '@/components/CartCount';
 import { HeaderContainer, HeaderContent, LogoContainer, CartContainer, CartIcon } from './styles';
-import { HeaderProps } from '@/types/header-types';
+import { useAppSelector, useAppDispatch } from '@/hooks/useRedux';
+import { selectCartItems, selectCartInitialized, initializeCart } from '@/redux/slices/cartSlice';
 
 /**
  * Header Component
  * 
  * Responsive header with logo and shopping cart
- * 
- * @prop {string} className - Optional CSS class name
- * @prop {number} cartCount - Optional number to display in the cart counter (defaults to 0)
  */
-const Header: React.FC<HeaderProps> = ({ className, cartCount = 0 }) => {
+const Header: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(selectCartItems);
+  const initialized = useAppSelector(selectCartInitialized);
+  
+  // Este useEffect será executado apenas no cliente
+  useEffect(() => {
+    if (!initialized) {
+      dispatch(initializeCart());
+    }
+  }, [dispatch, initialized]);
+
+  // Somente mostrar a contagem real se inicializado
+  const cartCount = initialized ? cartItems.length : 0;
+
   return (
-    <HeaderContainer className={className}>
+    <HeaderContainer>
       <HeaderContent>
         <Link href="/" style={{ textDecoration: 'none', display: 'block' }}>
           <LogoContainer>
