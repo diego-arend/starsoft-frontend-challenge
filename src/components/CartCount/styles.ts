@@ -1,10 +1,7 @@
 "use client";
 
-import styled from 'styled-components';
-
-interface StyledCartCountProps {
-  $hasMultipleDigits?: boolean;
-}
+import { StyledCartCountProps } from "@/types/cart-count-types";
+import styled from "styled-components";
 
 export const StyledCartCount = styled.span<StyledCartCountProps>`
   display: flex;
@@ -24,20 +21,18 @@ export const StyledCartCount = styled.span<StyledCartCountProps>`
   line-height: 22px;
   letter-spacing: -0.24px;
   height: 22px;
-  
+
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.26px;
     height: 24px;
   }
-  
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     font-size: 20px;
     line-height: 26px;
     letter-spacing: -0.292683px;
     height: 26px;
   }
-  
-
 `;

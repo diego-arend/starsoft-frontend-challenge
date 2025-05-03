@@ -7,21 +7,7 @@ import {
   Placeholder,
   FallbackImage,
 } from "./styles";
-
-interface ContainerImageProps {
-  src: string;
-  alt: string; 
-  width?: number;
-  height?: number;
-  priority?: boolean;
-  fill?: boolean;
-  quality?: number;
-  className?: string;
-  objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
-  fallbackSrc?: string;
-  onLoad?: () => void;
-  onError?: () => void;
-}
+import { ContainerImageProps } from "@/types/container-image-types";
 
 /**
  * ContainerImage Component

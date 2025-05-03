@@ -2,11 +2,7 @@
 
 import React from 'react';
 import { StyledCartCount } from './styles';
-
-interface CartCountProps {
-  count: number;
-  className?: string;
-}
+import { CartCountProps } from '@/types/cart-count-types';
 
 /**
  * CartCount Component

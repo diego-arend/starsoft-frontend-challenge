@@ -2,12 +2,7 @@
 
 import React from 'react';
 import { DataContainer, Title, Description } from './styles';
-
-interface CryptoDataProps {
-  title: string;
-  description: string | number;
-  className?: string;
-}
+import { CryptoDataProps } from '@/types/crypto-data-types';
 
 /**
  * CryptoData Component

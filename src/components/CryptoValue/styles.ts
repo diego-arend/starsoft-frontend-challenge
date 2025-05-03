@@ -7,9 +7,9 @@ export const CryptoContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
+  padding: 0;
   gap: 10px;
-  width: auto; /* Permitir que o container se ajuste ao conteúdo */
+  width: auto; 
   height: 29px;
 `;
 
@@ -32,11 +32,11 @@ export const CryptoIcon = styled.div`
 
 export const CryptoText = styled.span`
   /* Estilos do texto */
-  font-family: var(--font-poppins), sans-serif;
+  font-family: ${({ theme }) => theme.fonts.family.primary};
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: ${({ theme }) => theme.fonts.weights.semibold};
+  font-size: ${({ theme }) => theme.fonts.sizes.lg};
   line-height: 110%;
-  color: #F0F0F0;
+  color: ${({ theme }) => theme.colors.white};
   white-space: nowrap; /* Evita quebra de linha no texto */
 `;

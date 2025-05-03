@@ -1,33 +1,65 @@
 "use client";
 
 import styled from 'styled-components';
+import { CardContainerProps } from '@/types/card-item-nft-types';
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.div<CardContainerProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px;
+  padding: 0;
   gap: 49px;
-  width: 345px;
-  height: 555px;
+  width: ${({ theme }) => theme.cardSizes.width};
+  height: ${({ theme }) => theme.cardSizes.height};
+  min-width: ${({ theme }) => theme.cardSizes.width};
   background: ${({ theme }) => theme.colors.darkest};
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows.sm};
   border-radius: ${({ theme }) => theme.borders.radius};
   flex: none;
   order: 1;
   flex-grow: 0;
+  transition: ${({ theme }) => theme.transitions.default};
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
+  }
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.tabletSmall}) and (max-width: ${({ theme }) => theme.breakpoints.tablet}) and (orientation: portrait) {
+    width: 320px;
+    min-width: 320px;
+    height: 520px;
+    gap: 30px; 
+  }
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.tabletSmall}) and (max-width: ${({ theme }) => theme.breakpoints.tablet}) and (orientation: landscape) {
+    width: 330px;
+    min-width: 330px;
+    height: 535px;
+  }
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) and (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 335px;
+    min-width: 335px;
+    height: 545px;
+  }
+  
+  @media (max-width: 375px) {
+    width: ${({ theme }) => theme.cardSizes.mobileWidth};
+    min-width: ${({ theme }) => theme.cardSizes.mobileWidth};
+    height: ${({ theme }) => theme.cardSizes.mobileHeight};
+  }
 `;
 
 export const ImageWrapper = styled.div`
-  /* img-1 */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0px;
-  gap: 31px;
-  width: 345px;
+  padding: 0;
+  width: 100%;
   height: 258px;
   flex: none;
   order: 0;
@@ -36,10 +68,9 @@ export const ImageWrapper = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  /* img-2 */
-  width: 289px;
-  height: 258px;
-  background: #22232C; /* Cor um pouco mais clara que o darkest para dar contraste */
+  width: calc(100% - 40px);
+  height: 220px;
+  background: ${({ theme }) => theme.colors.darker};
   border-radius: ${({ theme }) => theme.borders.radius};
   flex: none;
   order: 0;
@@ -52,14 +83,13 @@ export const ImageContainer = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  /* Frame 9 */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 0px;
+  padding: 0;
   gap: 19px;
-  width: 345px;
+  width: 100%;
   height: auto;
   flex: none;
   order: 1;
@@ -68,13 +98,12 @@ export const ContentWrapper = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  /* title+price */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-  gap: 10px;
-  width: 296px;
+  padding: 0 ${({ theme }) => theme.paddings.md};
+  gap: 15px;
+  width: 100%;
   height: auto;
   flex: none;
   order: 0;
@@ -82,16 +111,15 @@ export const ContentContainer = styled.div`
 `;
 
 export const Title = styled.h3`
-  /* CryptoPunk #1 */
   margin: 0;
   padding: 0;
   width: auto;
   height: 25px;
-  font-family: var(--font-poppins);
+  font-family: ${({ theme }) => theme.fonts.family.primary};
   font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 140%;
+  font-weight: ${({ theme }) => theme.fonts.weights.medium};
+  font-size: ${({ theme }) => theme.fonts.sizes.md};
+  line-height: ${({ theme }) => theme.fonts.lineHeights.normal};
   color: ${({ theme }) => theme.colors.white};
   flex: none;
   order: 0;
@@ -99,15 +127,14 @@ export const Title = styled.h3`
 `;
 
 export const Description = styled.p`
-  /* Description */
   margin: 0;
   padding: 0;
   width: 296px;
   height: 12px;
-  font-family: var(--font-poppins);
+  font-family: ${({ theme }) => theme.fonts.family.primary};
   font-style: normal;
-  font-weight: 300;
-  font-size: 12px;
+  font-weight: ${({ theme }) => theme.fonts.weights.light};
+  font-size: ${({ theme }) => theme.fonts.sizes.xs};
   line-height: 12px;
   color: ${({ theme }) => theme.colors.lightGray};
   flex: none;
@@ -119,11 +146,10 @@ export const Description = styled.p`
 `;
 
 export const PriceContainer = styled.div`
-  /* Frame 70 */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px 0px 0px;
+  padding: ${({ theme }) => theme.paddings.md} 0 0;
   gap: 24px;
   width: 296px;
   height: auto;
@@ -143,21 +169,18 @@ export const PriceContainer = styled.div`
     background: ${({ theme }) => theme.colors.primary};
     box-shadow: 0px 50px 100px -20px rgba(50, 50, 93, 0.25);
     border-radius: ${({ theme }) => theme.borders.radius};
-    font-family: var(--font-poppins);
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 140%;
+    font-family: ${({ theme }) => theme.fonts.family.primary};
+    font-weight: ${({ theme }) => theme.fonts.weights.semibold};
+    font-size: ${({ theme }) => theme.fonts.sizes.md};
+    line-height: ${({ theme }) => theme.fonts.lineHeights.normal};
     color: ${({ theme }) => theme.colors.white};
     text-transform: uppercase;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: ${({ theme }) => theme.transitions.fast};
     
     &:hover {
-      background: ${({ theme }) => {
-        const color = theme.colors.primary;
-        return `color-mix(in srgb, ${color}, white 20%)`;
-      }};
+      background: ${({ theme }) => theme.colors.primaryHover};
     }
     
     &:active {

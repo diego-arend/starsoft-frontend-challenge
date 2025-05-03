@@ -2,10 +2,7 @@
 
 import React from "react";
 import { FooterContainer, FooterContent, FooterText } from "./styles";
-
-interface FooterProps {
-  className?: string;
-}
+import { FooterProps } from "@/types/footer-types";
 
 /**
  * Footer Component

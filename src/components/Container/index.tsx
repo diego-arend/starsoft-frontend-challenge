@@ -2,11 +2,7 @@
 
 import React from 'react';
 import { StyledContainer } from './styles';
-
-interface ContainerProps {
-  children: React.ReactNode;
-  className?: string;
-}
+import { ContainerProps } from '@/types/container-types';
 
 /**
  * Container Component
@@ -16,9 +12,18 @@ interface ContainerProps {
  * @prop {React.ReactNode} children - Content to be rendered inside the container
  * @prop {string} className - Optional CSS class name for additional styling
  */
-const Container: React.FC<ContainerProps> = ({ children, className }) => {
+const Container: React.FC<ContainerProps> = ({ 
+  children, 
+  className,
+  fullWidth = false,
+  noPadding = false
+}) => {
   return (
-    <StyledContainer className={className}>
+    <StyledContainer 
+      className={className} 
+      $fullWidth={fullWidth}
+      $noPadding={noPadding}
+    >
       {children}
     </StyledContainer>
   );

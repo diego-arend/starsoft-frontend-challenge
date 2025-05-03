@@ -1,58 +1,52 @@
-import styled, { css } from 'styled-components';
-import { ButtonVariant } from '@/components/Button';
-
-interface StyledButtonProps {
-  $variant?: ButtonVariant;
-  $width?: string;
-  $height?: string;
-  $fullWidth?: boolean;
-}
+import { StyledButtonProps } from "@/types/button-types";
+import styled, { css } from "styled-components";
 
 export const StyledButton = styled.button<StyledButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: ${({ theme }) => theme.borders.radius};
-  font-family: ${({ theme }) => theme.fonts.family};
-  font-weight: 600;
-  font-size: 16px;
+  font-family: ${({ theme }) => theme.fonts.family.primary};
+  font-weight: ${({ theme }) => theme.fonts.weights.semibold};
+  font-size: ${({ theme }) => theme.fonts.sizes.md};
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: ${({ theme }) => theme.transitions.fast};
   border: none;
   padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.lg}`};
-  
+
   /* Configurable dimensions */
-  width: ${({ $width, $fullWidth }) => ($fullWidth ? '100%' : $width || 'auto')};
-  height: ${({ $height }) => $height || 'auto'};
-  
+  width: ${({ $width, $fullWidth }) =>
+    $fullWidth ? "100%" : $width || "auto"};
+  height: ${({ $height }) => $height || "auto"};
+
   /* Style variants */
   ${({ $variant, theme }) => {
     switch ($variant) {
-      case 'secondary':
+      case "secondary":
         return css`
           background-color: ${theme.colors.gray};
           color: ${theme.colors.white};
-          
+
           &:hover {
             background-color: #454545;
           }
-          
+
           &:active {
             background-color: #2d2d2d;
           }
         `;
-      case 'primary':
+      case "primary":
       default:
         return css`
           background-color: ${theme.colors.primary};
           color: ${theme.colors.white};
-          
+
           &:hover {
-            background-color: #e67400;
+            background-color: ${theme.colors.primaryHover};
           }
-          
+
           &:active {
-            background-color: #cc6700;
+            background-color: ${theme.colors.primaryActive};
           }
         `;
     }

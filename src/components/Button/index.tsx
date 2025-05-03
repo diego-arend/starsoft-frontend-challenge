@@ -1,9 +1,7 @@
 "use client";
 
-import React, { ButtonHTMLAttributes } from 'react';
+import { ButtonProps } from '@/types/button-types';
 import { StyledButton } from './styles';
-
-export type ButtonVariant = 'primary' | 'secondary';
 
 /**
  * Button component props
@@ -13,12 +11,7 @@ export type ButtonVariant = 'primary' | 'secondary';
  * @param {boolean} fullWidth 
  * @param {ButtonHTMLAttributes<HTMLButtonElement>} props 
  */
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  width?: string;
-  height?: string;
-  fullWidth?: boolean;
-}
+
 
 /**
  * Button Component

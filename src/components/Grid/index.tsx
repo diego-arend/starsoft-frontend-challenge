@@ -1,31 +1,37 @@
 "use client";
 
 import React from "react";
-import { StyledRow, StyledCol } from "./styles";
-
-export type GapSize = "sm" | "md" | "lg";
+import { StyledRow, StyledCol, StyledGridContainer } from "./styles";
+import { ColProps, RowProps, GridContainerProps } from "@/types/grid-types";
 
 // Define and export the gaps object
 export const gaps = {
-  sm: "0.5rem",  
-  md: "1rem",   
-  lg: "1.5rem",  
+  sm: "0.5rem",   // 8px
+  md: "1rem",     // 16px
+  lg: "2.5rem",   // 40px
 };
 
-interface RowProps {
-  children: React.ReactNode;
-  className?: string;
-  gap?: GapSize;
-}
-
-interface ColProps {
-  children: React.ReactNode;
-  className?: string;
-  xs?: number;
-  sm?: number;
-  md?: number;
-  lg?: number;
-}
+/**
+ * GridContainer Component
+ *
+ * Container that wraps Row and Col components to ensure proper alignment and spacing
+ */
+export const GridContainer: React.FC<GridContainerProps> = ({
+  children,
+  className,
+  maxWidth = "1200px",
+  centered = true,
+}) => {
+  return (
+    <StyledGridContainer 
+      className={className} 
+      $maxWidth={maxWidth} 
+      $centered={centered}
+    >
+      {children}
+    </StyledGridContainer>
+  );
+};
 
 /**
  * Row Component
@@ -56,9 +62,21 @@ export const Col: React.FC<ColProps> = ({
   sm,
   md,
   lg,
+  align = 'center', // centralizado por padrão
+  justify = 'center', // centralizado por padrão
+  padding = '8px', // padding padrão
 }) => {
   return (
-    <StyledCol className={className} xs={xs} sm={sm} md={md} lg={lg}>
+    <StyledCol 
+      className={className} 
+      xs={xs} 
+      sm={sm} 
+      md={md} 
+      lg={lg}
+      $align={align}
+      $justify={justify}
+      $padding={padding}
+    >
       {children}
     </StyledCol>
   );

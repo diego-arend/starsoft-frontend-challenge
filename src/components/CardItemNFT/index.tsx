@@ -14,18 +14,7 @@ import {
   Description,
   PriceContainer
 } from './styles';
-
-interface CardItemNFTProps {
-  id: string | number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  price: number | string;
-  cryptoSymbol?: string;
-  cryptoIconPath?: string;
-  onBuyClick?: (id: string | number) => void;
-  className?: string;
-}
+import { CardItemNFTProps } from '@/types/card-item-nft-types';
 
 /**
  * CardItemNFT Component
@@ -42,6 +31,8 @@ const CardItemNFT: React.FC<CardItemNFTProps> = ({
   cryptoIconPath = "/eth_symbol.png",
   onBuyClick,
   className,
+  width = 345,
+  height = 555,
 }) => {
   const handleBuyClick = () => {
     if (onBuyClick) {
@@ -50,7 +41,7 @@ const CardItemNFT: React.FC<CardItemNFTProps> = ({
   };
 
   return (
-    <CardContainer className={className}>
+    <CardContainer className={className} $width={width} $height={height}>
       <ImageWrapper>
         <ImageContainer>
           <ContainerImage

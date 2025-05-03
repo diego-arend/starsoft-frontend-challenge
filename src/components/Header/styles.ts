@@ -10,9 +10,9 @@ export const HeaderContainer = styled.header`
   max-width: 100%;
   margin: 0;
   background: ${({ theme }) => theme.colors.dark};
-  border-bottom: 1px solid rgba(255, 255, 255, 0.21);
+  border-bottom: 1px solid ${({ theme }) => theme.colors.whiteAlpha[20]};
   height: 70px;
-  padding: 0 16px;
+  padding: 0 ${({ theme }) => theme.paddings.md};
   flex: none;
   order: 0;
   align-self: stretch;
@@ -31,12 +31,22 @@ export const HeaderContainer = styled.header`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     height: 80px;
-    padding: 0 24px;
+    padding: 0 ${({ theme }) => theme.paddings.md};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tabletSmall}) and (max-width: ${({ theme }) => theme.breakpoints.tablet}) and (orientation: portrait) {
+    height: 80px;
+    padding: 0 ${({ theme }) => theme.paddings.md};
+  }
+  
+  @media (min-width: ${({ theme }) => theme.breakpoints.tabletSmall}) and (max-width: ${({ theme }) => theme.breakpoints.desktop}) and (orientation: landscape) {
+    height: 90px;
+    padding: 0 ${({ theme }) => theme.paddings.lg};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     height: 100px;
-    padding: 0 32px;
+    padding: 0 ${({ theme }) => theme.paddings.lg};
   }
 `;
 
@@ -45,7 +55,7 @@ export const HeaderContent = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1728px; /* Largura máxima do conteúdo */
+  max-width: 1728px; 
   margin: 0 auto;
   height: 100%;
 `;

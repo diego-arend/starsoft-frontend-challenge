@@ -5,11 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CartCount from '@/components/CartCount';
 import { HeaderContainer, HeaderContent, LogoContainer, CartContainer, CartIcon } from './styles';
-
-interface HeaderProps {
-  className?: string;
-  cartCount?: number;
-}
+import { HeaderProps } from '@/types/header-types';
 
 /**
  * Header Component

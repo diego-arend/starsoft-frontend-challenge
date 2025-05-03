@@ -3,13 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { CryptoContainer, CryptoIcon, CryptoText } from "./styles";
-
-interface CryptoValueProps {
-  value: number | string;
-  symbol: string;
-  iconPath?: string;
-  className?: string;
-}
+import { CryptoValueProps } from "@/types/crypto-value-types";
 
 /**
  * CryptoValue Component
