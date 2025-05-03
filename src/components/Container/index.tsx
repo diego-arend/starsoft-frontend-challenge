@@ -11,8 +11,10 @@ interface ContainerProps {
 /**
  * Container Component
  * 
- * A responsive container that centers content and provides consistent padding
- * based on the theme's breakpoints.
+ * Main container for page content with consistent styling and layout
+ * 
+ * @prop {React.ReactNode} children - Content to be rendered inside the container
+ * @prop {string} className - Optional CSS class name for additional styling
  */
 const Container: React.FC<ContainerProps> = ({ children, className }) => {
   return (

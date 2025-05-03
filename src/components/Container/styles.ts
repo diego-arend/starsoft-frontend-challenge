@@ -4,15 +4,20 @@ import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: ${({ theme }) => `0 ${theme.paddings.md}`};
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 164px);
+
+  padding: 24px 16px;
   
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding: ${({ theme }) => `0 ${theme.paddings.lg}`};
+    padding: 32px 24px;
   }
   
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding: ${({ theme }) => `0 ${theme.paddings.xl}`};
+    padding: 40px 32px;
   }
 `;

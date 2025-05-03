@@ -7,7 +7,8 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   background: ${({ theme }) => theme.colors.dark};
   border-bottom: 1px solid rgba(255, 255, 255, 0.21);
   height: 70px;
@@ -17,6 +18,16 @@ export const HeaderContainer = styled.header`
   align-self: stretch;
   flex-grow: 0;
   position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     height: 80px;
@@ -25,9 +36,18 @@ export const HeaderContainer = styled.header`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     height: 100px;
-    max-width: 1728px;
     padding: 0 32px;
   }
+`;
+
+export const HeaderContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1728px; /* Largura máxima do conteúdo */
+  margin: 0 auto;
+  height: 100%;
 `;
 
 export const LogoContainer = styled.div`
