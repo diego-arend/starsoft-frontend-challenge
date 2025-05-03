@@ -10,7 +10,7 @@ import {
 
 interface ContainerImageProps {
   src: string;
-  alt: string;
+  alt: string; 
   width?: number;
   height?: number;
   priority?: boolean;
@@ -34,7 +34,7 @@ interface ContainerImageProps {
  */
 const ContainerImage: React.FC<ContainerImageProps> = ({
   src,
-  alt,
+  alt = "Imagem do item", 
   width = 500,
   height = 300,
   priority = false,
@@ -74,11 +74,12 @@ const ContainerImage: React.FC<ContainerImageProps> = ({
           height={height}
           $fill={fill}
           $objectFit={objectFit}
+          aria-label={`Imagem não disponível: ${alt}`}
         />
       ) : (
         <StyledImage
           src={src}
-          alt={alt}
+          alt={alt} 
           width={!fill ? width : undefined}
           height={!fill ? height : undefined}
           fill={fill}
