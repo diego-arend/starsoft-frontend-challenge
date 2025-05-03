@@ -1,0 +1,8 @@
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  className?: string;
+  totalItems?: number;
+  itemsPerPage?: number;
+}

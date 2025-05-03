@@ -1,0 +1,1 @@
+export const API_BASE_URL = 'https://starsoft-challenge-7dfd4a56a575.herokuapp.com/v1';

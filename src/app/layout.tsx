@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Geist, Geist_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Poppins, IBM_Plex_Sans } from "next/font/google";
 import StyledComponentsRegistry from "../styles/registry";
 import ThemeProvider from "../styles/ThemeProvider";
+import QueryProvider from "@/providers/QueryProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -21,16 +22,6 @@ const ibmPlexSans = IBM_Plex_Sans({
   display: 'swap',
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "Starsoft Frontend Challenge",
   description: "A frontend challenge for Starsoft",
@@ -48,16 +39,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} ${ibmPlexSans.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${ibmPlexSans.variable}`}>
       <body>
         <StyledComponentsRegistry>
-          <ThemeProvider>
-            <div className="layout-wrapper">
-              <Header />
-              <main>{children}</main>
-              <Footer />
-            </div>
-          </ThemeProvider>
+          <QueryProvider>
+            <ThemeProvider>
+              <div className="layout-wrapper">
+                <Header cartCount={3} />
+                <main>{children}</main>
+                <Footer />
+              </div>
+            </ThemeProvider>
+          </QueryProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

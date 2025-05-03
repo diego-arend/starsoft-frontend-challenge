@@ -56,3 +56,6 @@ O projeto implementa o styled-components com Next.js usando uma configuração p
    }
 ````
 
+### PROBLEMAS ENCONTRADOS
+- No Figma indica que a tela deve mostrar 8 itens por vez. Porém a API só retorna o mínimo de 10 itens por busca, mesmo editando no swagger a quantidade de itens inferior a 10. Portanto foi escolhido que a request padrão tem 12 itens.
+- No Figma mostra as imagens nos CARDS com background padrão do tema. Porém as imagens retonardas nas urls da API possuem background coloridos.
