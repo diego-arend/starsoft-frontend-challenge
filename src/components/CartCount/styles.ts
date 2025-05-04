@@ -36,3 +36,27 @@ export const StyledCartCount = styled.span<StyledCartCountProps>`
     height: 26px;
   }
 `;
+
+export const CartCountContainer = styled.div`
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: ${({ theme }) => theme.fonts.weights.bold};
+  
+  @media (max-width: 480px) {
+    top: -5px;
+    right: -5px; 
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
+`;

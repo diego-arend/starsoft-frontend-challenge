@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CartCount from '@/components/CartCount';
@@ -17,19 +17,17 @@ const Header: React.FC = () => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const initialized = useAppSelector(selectCartInitialized);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cartCount = initialized ? cartItems.length : 0;
   
-  // Este useEffect será executado apenas no cliente
-  useEffect(() => {
+  React.useEffect(() => {
     if (!initialized) {
       dispatch(initializeCart());
     }
   }, [dispatch, initialized]);
 
-  // Somente mostrar a contagem real se inicializado
-  const cartCount = initialized ? cartItems.length : 0;
-
   return (
-    <HeaderContainer>
+    <HeaderContainer ref={headerRef}>
       <HeaderContent>
         <Link href="/" style={{ textDecoration: 'none', display: 'block' }}>
           <LogoContainer>

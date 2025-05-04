@@ -99,9 +99,6 @@ export const StyledCol = styled.div<StyledColProps>`
     }
   }};
   
-  /* Permitindo padding personalizado */
   padding: ${props => props.$padding ? props.$padding : undefined};
-  
-  /* Garantindo espaço adequado para cards */
   min-height: ${({ theme }) => `calc(${theme.cardSizes.height} - 100px)`};
 `;
