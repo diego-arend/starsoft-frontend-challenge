@@ -107,20 +107,23 @@ export const ContentWrapper = styled.div`
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0 ${({ theme }) => theme.paddings.md};
+  align-items: center;
+  /* Removemos o padding lateral e definimos a mesma largura da imagem */
+  padding: 0; /* Removido padding horizontal */
   gap: 15px;
-  width: 100%;
+  width: calc(100% - 40px); /* Exatamente a mesma largura do ImageContainer */
+  max-width: calc(100% - 40px); /* Garante que não exceda a largura da imagem */
   height: auto;
   flex: none;
   order: 0;
   flex-grow: 0;
+  margin: 0 auto; /* Mantém centralizado */
 `;
 
 export const Title = styled.h3`
   margin: 0;
-  padding: 0;
-  width: auto;
+  padding: 0 8px; /* Adicionado um pequeno padding horizontal */
+  width: 100%;
   height: 25px;
   font-family: ${({ theme }) => theme.fonts.family.primary};
   font-style: normal;
@@ -131,12 +134,13 @@ export const Title = styled.h3`
   flex: none;
   order: 0;
   flex-grow: 0;
+  text-align: center;
 `;
 
 export const Description = styled.p`
   margin: 0;
-  padding: 0;
-  width: 296px;
+  padding: 0 8px; /* Adicionado um pequeno padding horizontal */
+  width: 100%;
   height: 12px;
   font-family: ${({ theme }) => theme.fonts.family.primary};
   font-style: normal;
@@ -150,20 +154,22 @@ export const Description = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
 `;
 
 export const PriceContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-start; /* Alinhado à esquerda em vez de center */
   padding: ${({ theme }) => theme.paddings.md} 0 0;
   gap: 24px;
-  width: 296px;
+  width: 100%; /* 100% da largura do ContentContainer */
   height: auto;
   flex: none;
   order: 2;
   flex-grow: 0;
   
+  /* O botão continua ocupando 100% da largura */
   button {
     width: 100%;
     height: 66px;
