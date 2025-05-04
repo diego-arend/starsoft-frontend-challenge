@@ -1,16 +1,9 @@
 "use client";
 
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { PaginatedResponse } from "@/types/paginate-types";
+import { useQuery } from "@tanstack/react-query";
 import { ProductsService } from "@/services/api/api";
-import { Product } from "@/types/product-types";
 import { ITEMS_PER_PAGE } from "@/constants/general-constants";
-
-interface UseProductsParams {
-  page?: number;
-  limit?: number;
-  options?: Omit<UseQueryOptions<PaginatedResponse<Product>, Error>, 'queryKey' | 'queryFn'>;
-}
+import { UseProductsParams } from "@/types/useProducts-types";
 
 /**
  * useProducts Hook
@@ -31,26 +24,6 @@ export const useProducts = ({
     queryFn: () => ProductsService.getProducts(page, limit),
     placeholderData: undefined, 
     staleTime: 1000 * 60 * 5, 
-    ...options
-  });
-};
-
-/**
- * useProduct Hook
- * 
- * Custom hook for fetching a single product by ID
- * 
- * @param id - Product ID
- * @param options - Additional React Query options
- */
-export const useProduct = (
-  id: string,
-  options?: Omit<UseQueryOptions<Product, Error>, 'queryKey' | 'queryFn'>
-) => {
-  return useQuery({
-    queryKey: ['product', id],
-    queryFn: () => ProductsService.getProductById(id),
-    staleTime: 1000 * 60 * 5, // 5 minutes
     ...options
   });
 };

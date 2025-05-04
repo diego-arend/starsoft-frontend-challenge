@@ -1,6 +1,23 @@
 import { API_BASE_URL } from "@/constants/api-url-constants";
 import { PaginatedResponse } from "@/types/paginate-types";
 import { Product } from "@/types/product-types";
+import { handleErrorStatusCode, handleApiError } from "@/services/ErrorStatusCode";
+
+/**
+ * Handle API response errors with appropriate toast notifications
+ * 
+ * @param response - Fetch API response object
+ * @param customMessage - Optional custom error message prefix
+ * @returns The parsed JSON response
+ * @throws Error if response is not ok
+ */
+const handleApiResponse = async <T>(response: Response, customMessage?: string): Promise<T> => {
+  if (!response.ok) {
+    handleErrorStatusCode(response, customMessage);
+  }
+  
+  return response.json() as Promise<T>;
+};
 
 /**
  * Service for handling API requests related to products
@@ -8,34 +25,24 @@ import { Product } from "@/types/product-types";
 export const ProductsService = {
   /**
    * Fetch products with pagination
-   * 
+   *
    * @param page - Page number (default: 1)
-   * @param limit - Items per page (default: 20)
+   * @param limit - Items per page (default: 8)
+   * @returns Promise with paginated products
+   * @throws Error if request fails
    */
-  getProducts: async (page = 1, limit = 8): Promise<PaginatedResponse<Product>> => {
+  getProducts: async (
+    page = 1,
+    limit = 8
+  ): Promise<PaginatedResponse<Product>> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/products?page=${page}&limit=${limit}`);
-      const data = await response.json();
-      console.log('API response:', data);
-      return data;
+      const response = await fetch(
+        `${API_BASE_URL}/products?page=${page}&limit=${limit}`
+      );
+      
+      return await handleApiResponse<PaginatedResponse<Product>>(response, "Erro ao carregar produtos");
     } catch (error) {
-      console.error('Error fetching products:', error);
-      throw error;
+      return handleApiError(error, "Erro ao carregar produtos. Verifique sua conexão de internet.", "getProducts");
     }
-  },
-  
-  /**
-   * Fetch a single product by ID
-   * 
-   * @param id - Product ID
-   */
-  getProductById: async (id: string): Promise<Product> => {
-    const response = await fetch(`${API_BASE_URL}/products/${id}`);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch product: ${response.status} ${response.statusText}`);
-    }
-    
-    return response.json();
   }
 };

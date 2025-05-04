@@ -8,6 +8,7 @@ import {
   selectCartItems,
   removeFromCart,
   updateQuantity,
+  clearCart,
 } from "@/redux/slices/cartSlice";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartItem } from "@/types/cartSlice-types";
@@ -31,6 +32,12 @@ import {
 } from "./styles";
 import { CartOverlayProps } from "@/types/cartOverlay-types";
 
+/**
+ * CartOverlay Component
+ * 
+ * A sliding overlay that displays the shopping cart contents and checkout functionality.
+ * 
+ */
 const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const cartItems = useAppSelector(selectCartItems) as CartItem[];
   const dispatch = useAppDispatch();
@@ -38,6 +45,7 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
   const cartTotal = cartItems.reduce((total, item) => {
     return total + (item.price || 0) * item.quantity;
   }, 0);
+
 
   const handleRemoveItem = (id: number | string) => {
     dispatch(removeFromCart(id));
@@ -63,6 +71,8 @@ const CartOverlay: React.FC<CartOverlayProps> = ({ isOpen, onClose }) => {
       icon: "🚀",
       duration: 4000,
     });
+
+    dispatch(clearCart());
 
     setTimeout(() => {
       onClose();
