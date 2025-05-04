@@ -10,6 +10,7 @@ import theme from '@/styles/theme';
 import QueryProvider from "@/providers/QueryProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Toaster } from 'react-hot-toast'; // Importar o Toaster
 import { initializeCart } from '@/redux/slices/cartSlice';
 
 export default function ClientLayout({
@@ -32,6 +33,33 @@ export default function ClientLayout({
               <Header />
               <main>{children}</main>
               <Footer />
+              <Toaster 
+                position="top-right"
+                toastOptions={{
+                  duration: 3000,
+                  style: {
+                    background: '#222222',
+                    color: '#fff',
+                    borderRadius: '8px',
+                    padding: '12px 16px',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                    fontSize: '14px',
+                    fontFamily: 'Poppins, sans-serif'
+                  },
+                  success: {
+                    iconTheme: {
+                      primary: '#10B981',
+                      secondary: '#fff',
+                    },
+                  },
+                  error: {
+                    iconTheme: {
+                      primary: '#EF4444',
+                      secondary: '#fff',
+                    },
+                  }
+                }}
+              />
             </div>
           </ThemeProvider>
         </QueryProvider>

@@ -20,6 +20,19 @@ export const HeaderContainer = styled.header`
   z-index: ${({ theme }) => theme.zIndices.fixed};
   box-sizing: border-box; 
   
+  /* 
+   * Aplicando estilos específicos para iOS (Safari Mobile)
+   * 
+   * @supports (-webkit-touch-callout: none) detecta especificamente dispositivos iOS
+   * Esta regra é necessária porque o Safari em iOS tem comportamentos específicos:
+   * 1. Problemas com 'position: fixed' durante o scroll, causando flickering
+   * 2. Problemas com a barra de endereço recolhível que afeta o layout
+   * 3. Bugs de renderização em algumas versões do iOS com headers fixos
+   *
+   * Ao usar position: sticky em vez de fixed no iOS, evitamos problemas de
+   * performance e renderização, principalmente durante animações de scroll.
+   * As declarações !important garantem que estas regras sobrescrevam outros estilos.
+   */
   @supports (-webkit-touch-callout: none) {
     @media (max-width: 480px) {
       height: 70px !important;
@@ -36,6 +49,14 @@ export const HeaderContainer = styled.header`
     height: 70px !important;
     min-height: 70px !important;
     max-height: 70px !important;
+    
+    /* 
+     * As seguintes propriedades ajudam a evitar problemas de renderização
+     * em dispositivos móveis:
+     * 1. translate3d/transform força a aceleração de hardware (GPU) para animações mais suaves
+     * 2. backface-visibility melhora performance em alguns navegadores móveis
+     * 3. Desativar transitions evita glitches durante scroll ou mudanças de estado
+     */
     transform: translate3d(0, 0, 0) !important; 
     -webkit-transform: translate3d(0, 0, 0) !important;
     transition: none !important;

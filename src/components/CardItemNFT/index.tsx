@@ -49,7 +49,6 @@ const CardItemNFT: React.FC<CardItemNFTProps> = ({
   const [animationId, setAnimationId] = useState(0);
   const cartItems = useAppSelector(selectCartItems);
 
-  // Verificar se o item já está no carrinho
   useEffect(() => {
     const itemInCart = cartItems.some((item) => item.id === id);
     setItemExistsInCart(itemInCart);
@@ -59,13 +58,23 @@ const CardItemNFT: React.FC<CardItemNFTProps> = ({
     if (onBuyClick && !isAnimating) {
       // Verificar se o item já existe no carrinho antes de adicionar
       const existsBeforeAdding = cartItems.some((item) => item.id === id);
-      setWasNewlyAdded(!existsBeforeAdding);
-
-      onBuyClick(id);
-
-      // Inicia a animação e incrementa o ID
-      triggerAnimation();
-      setAnimationId((prev) => prev + 1);
+      
+      // Se o item já existe no carrinho, não fazemos nada além da animação
+      if (existsBeforeAdding) {
+        // Apenas executamos a animação para feedback visual
+        setWasNewlyAdded(false);
+        triggerAnimation();
+        setAnimationId((prev) => prev + 1);
+        return; // Não chamar onBuyClick para evitar adicionar novamente
+      } else {
+        // Item não está no carrinho, podemos adicioná-lo
+        setWasNewlyAdded(true);
+        onBuyClick(id);
+        
+        // Inicia a animação e incrementa o ID
+        triggerAnimation();
+        setAnimationId((prev) => prev + 1);
+      }
     }
   };
 

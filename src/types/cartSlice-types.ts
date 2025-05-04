@@ -1,5 +1,6 @@
-export interface CartItem {
-  id: number | string;
+import { Product } from './product-types';
+
+export interface CartItem extends Product {
   quantity: number;
 }
 
