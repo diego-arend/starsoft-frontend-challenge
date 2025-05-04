@@ -60,11 +60,17 @@ export const ImageWrapper = styled.div`
   align-items: center;
   padding: 0;
   width: 100%;
-  height: 258px;
+  height: 238px; /* Reduzido de 258px para 238px */
+  margin-top: -40px; /* Desloca o wrapper para cima */
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: 228px; /* Ajuste para telas menores */
+    margin-top: -15px; /* Menos deslocamento em telas menores */
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -80,6 +86,7 @@ export const ImageContainer = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
+  margin-top: 10px; /* Pequeno ajuste para cima */
 `;
 
 export const ContentWrapper = styled.div`
@@ -157,7 +164,6 @@ export const PriceContainer = styled.div`
   order: 2;
   flex-grow: 0;
   
-  /* Ajuste o botão para ocupar toda a largura */
   button {
     width: 100%;
     height: 66px;

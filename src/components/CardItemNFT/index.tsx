@@ -5,16 +5,15 @@ import Button from "@/components/Button";
 import ContainerImage from "@/components/ContainerImage";
 import CryptoValue from "@/components/CryptoValue";
 import CartAddAnimation from "@/components/CartAddAnimation";
+import ItemDetails from "@/components/ItemDetails";
 import { motion } from "framer-motion";
-import { useAnimation } from "@/hooks/useAnimation"; // Importando o novo hook
+import { useAnimation } from "@/hooks/useAnimation";
 import {
   CardContainer,
   ImageWrapper,
   ImageContainer,
   ContentWrapper,
   ContentContainer,
-  Title,
-  Description,
   PriceContainer,
 } from "./styles";
 import { CardItemNFTProps } from "@/types/card-item-nft-types";
@@ -39,22 +38,15 @@ const CardItemNFT: React.FC<CardItemNFTProps> = ({
   width = 345,
   height = 555,
 }) => {
-  // Estado para controle do carrinho
   const [itemExistsInCart, setItemExistsInCart] = useState(false);
   const [wasNewlyAdded, setWasNewlyAdded] = useState(false);
-  
-  // Usando o hook de animação
-  const { 
-    isAnimating, 
-    triggerAnimation, 
-    onAnimationStart, 
-    onAnimationComplete 
+  const {
+    isAnimating,
+    triggerAnimation,
+    onAnimationStart,
+    onAnimationComplete,
   } = useAnimation();
-  
-  // ID único para a animação (começa em 0 e é incrementado quando triggerAnimation é chamado)
   const [animationId, setAnimationId] = useState(0);
-  
-  // Obter itens do carrinho
   const cartItems = useAppSelector(selectCartItems);
 
   // Verificar se o item já está no carrinho
@@ -63,19 +55,17 @@ const CardItemNFT: React.FC<CardItemNFTProps> = ({
     setItemExistsInCart(itemInCart);
   }, [cartItems, id]);
 
-  // Lidar com o clique no botão de comprar
   const handleBuyClick = () => {
     if (onBuyClick && !isAnimating) {
       // Verificar se o item já existe no carrinho antes de adicionar
       const existsBeforeAdding = cartItems.some((item) => item.id === id);
       setWasNewlyAdded(!existsBeforeAdding);
-      
-      // Chamar a função para adicionar ao carrinho
+
       onBuyClick(id);
-      
+
       // Inicia a animação e incrementa o ID
       triggerAnimation();
-      setAnimationId(prev => prev + 1);
+      setAnimationId((prev) => prev + 1);
     }
   };
 
@@ -110,8 +100,7 @@ const CardItemNFT: React.FC<CardItemNFTProps> = ({
 
       <ContentWrapper>
         <ContentContainer>
-          <Title>{title}</Title>
-          <Description>{description}</Description>
+          <ItemDetails title={title} description={description} />
 
           <PriceContainer>
             <CryptoValue
