@@ -7,6 +7,12 @@ import { Product } from '@/types/product-types';
 import { PaginatedResponse } from '@/types/paginate-types';
 import { CardItemNFTProps } from '@/types/card-item-nft-types';
 
+// Mock window.scrollTo
+Object.defineProperty(window, 'scrollTo', {
+  value: jest.fn(),
+  writable: true
+});
+
 // Mock the useProducts hook
 jest.mock('@/hooks/useProducts', () => ({
   useProducts: jest.fn(),
