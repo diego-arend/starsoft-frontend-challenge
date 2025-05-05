@@ -3,14 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { AnimationContainer, AnimationIconContainer, AnimationText } from './styles';
-
-export interface CartAddAnimationProps {
-  uniqueId: number;  // Identificador único para forçar re-renders
-  isNewItem: boolean;
-  onAnimationStart?: () => void;  
-  onAnimationComplete?: () => void;  
-  duration?: number;  
-}
+import { CartAddAnimationProps } from '@/types/cardAnimation-types';
 
 /**
  * CartAddAnimation Component
@@ -64,7 +57,6 @@ const CartAddAnimation: React.FC<CartAddAnimationProps> = ({
             ease: "easeOut"
           }}
         >
-          {/* Conteúdo da animação não mudou */}
           <AnimationIconContainer
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
