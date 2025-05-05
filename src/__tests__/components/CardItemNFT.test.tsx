@@ -3,16 +3,31 @@ import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithProviders } from '@/__tests__/test-utils';
 import CardItemNFT from '@/components/CardItemNFT';
 import { CartItem } from '@/types/cartSlice-types'; 
-import Image from 'next/image';
+
+// Mock Next.js Image component
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: { 'data-testid'?: string; src: string; alt?: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img 
+      data-testid={props['data-testid']} 
+      src={props.src} 
+      alt={props.alt || ''} 
+    />
+  ),
+}));
 
 // Mock components with simple implementations
 jest.mock('@/components/ContainerImage', () => ({
   __esModule: true,
   default: (props: { src: string; alt?: string }) => (
-    <Image
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       data-testid="container-image"
       alt={props.alt || ''}
-      {...props}
+      src={props.src}
+      width={500} 
+      height={500} 
     />
   )
 }));
