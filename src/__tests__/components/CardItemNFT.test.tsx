@@ -2,20 +2,11 @@ import React from 'react';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithProviders } from '@/__tests__/test-utils';
 import CardItemNFT from '@/components/CardItemNFT';
-import { CartItem } from '@/types/cartSlice-types'; 
+import { CartItem } from '@/types/cartSlice-types';
+import NextImageMock from '@/__tests__/mocks/nextImage.mock';
 
-// Mock Next.js Image component
-jest.mock('next/image', () => ({
-  __esModule: true,
-  default: (props: { 'data-testid'?: string; src: string; alt?: string }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img 
-      data-testid={props['data-testid']} 
-      src={props.src} 
-      alt={props.alt || ''} 
-    />
-  ),
-}));
+// Setup Next.js Image mock
+NextImageMock.setupNextImageMock();
 
 // Mock components with simple implementations
 jest.mock('@/components/ContainerImage', () => ({
