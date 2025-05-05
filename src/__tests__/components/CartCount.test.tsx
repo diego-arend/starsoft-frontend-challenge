@@ -47,19 +47,28 @@ describe('CartCount Component', () => {
     // First render with initial value
     const { rerender } = renderWithProviders(<CartCount count={3} />);
     
+    // Get initial count element
+    const initialCountElement = screen.getByText('3');
+    expect(initialCountElement).toBeInTheDocument();
+    
     // Increase value to test animation
     rerender(<CartCount count={5} />);
     
-    const motionDiv = screen.getByTestId('motion-div-mock');
-    
-    // Since key is not preserved as DOM attribute, we only check for text content
-    expect(motionDiv).toBeInTheDocument();
+    // Verify the new count is displayed
     expect(screen.getByText('5')).toBeInTheDocument();
+    // The original '3' should no longer be present
+    expect(screen.queryByText('3')).not.toBeInTheDocument();
+    
+    // Verify that the container has a transform style (showing animation is happening)
+    const container = screen.getByText('5').parentElement;
+    expect(container).toHaveStyle('transform: scale(1.5)');
     
     // Decrease value to test animation
     rerender(<CartCount count={2} />);
     
+    // Verify the count was updated again
     expect(screen.getByText('2')).toBeInTheDocument();
+    expect(screen.queryByText('5')).not.toBeInTheDocument();
   });
 
   it('should change appearance when count is greater than 0', () => {
