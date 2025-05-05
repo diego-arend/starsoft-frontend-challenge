@@ -6,10 +6,10 @@ import configureStore from "redux-mock-store";
 import theme from "@/styles/theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// Cria um mockStore que pode ser usado nos testes
+// Creates a mockStore that can be used in tests
 const mockStore = configureStore([]);
 
-// Define o estado padrão para o Redux nos testes
+// Defines the default state for Redux in tests
 const defaultState = {
   cart: {
     items: [],
@@ -17,14 +17,14 @@ const defaultState = {
   },
 };
 
-// Define os tipos para as opções de renderização com providers
+// Defines types for rendering options with providers
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: Record<string, unknown>;
   store?: ReturnType<typeof mockStore>;
 }
 
 /**
- * Renderiza um componente com os providers necessários (Redux, Styled Components, etc.)
+ * Renders a component with necessary providers (Redux, Styled Components, etc.)
  */
 export function renderWithProviders(
   ui: ReactElement,
@@ -45,12 +45,11 @@ export function renderWithProviders(
   return {
     ...render(ui, { wrapper: Wrapper, ...renderOptions }),
     store,
-    // Adiciona um helper para obter as ações disparadas
+    // Adds a helper to get dispatched actions
     getActions: () => store.getActions(),
   };
 }
 
-// Add this function to your test-utils.tsx file
 export function renderHookWithQueryClient<TResult, TProps>(
   renderCallback: (props: TProps) => TResult,
   { initialProps }: { initialProps?: TProps } = {}
@@ -73,5 +72,4 @@ export function renderHookWithQueryClient<TResult, TProps>(
   return renderHook(renderCallback, { wrapper, initialProps });
 }
 
-// Re-exporta tudo de RTL
 export * from "@testing-library/react";
