@@ -14,6 +14,17 @@ import { addToCart } from '@/redux/slices/cartSlice';
 import { ITEMS_PER_PAGE } from '@/constants/general-constants';
 import { PaginatedResponse } from '@/types/paginate-types'; 
 
+/**
+ * HomePage Component
+ * 
+ * Main landing page of the application that displays a grid of NFT products with pagination.
+ * Features:
+ * - Fetches products from the API using the useProducts hook
+ * - Displays products in a responsive grid layout
+ * - Implements pagination for navigating through product pages
+ * - Allows users to add products to their cart
+ * - Handles loading, error, and empty states
+ */
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useAppDispatch();
